@@ -2,13 +2,9 @@
 
 ## Copyright Notice
 
-Copyright (c) 2026  Alla Azzouz/ Alla Abd El-Rady. All rights reserved.
+Copyright (c) 2026 Alla Azzouz. All rights reserved.
 
-This repository is associated with a manuscript currently under peer review.
-All rights reserved until publication. Unauthorized use, reproduction,
-or distribution is prohibited without explicit written permission from the authors.
-
-Upon publication, this repository will be licensed under the MIT License.
+This repository is associated with a manuscript currently under peer review. All rights reserved until publication. Unauthorized use, reproduction, or distribution is prohibited without explicit written permission from the authors. Upon publication, this repository will be licensed under the MIT License.
 
 ---
 
@@ -19,36 +15,40 @@ This work proposes a hybrid framework for detecting AI-generated Arabic text by 
 ---
 
 ## Repository Structure
+
+```
 arabic-ai-text-detection/
 ├── src/
-│   ├── config.py                  Model and training configuration
-│   ├── model.py                   Hybrid model architecture
-│   ├── train.py                   Training script
-│   ├── feature_engineering.py     Arabic linguistic feature extraction
-│   ├── processing.py              Data preprocessing
+│   ├── config.py                  # Model and training configuration
+│   ├── model.py                   # Hybrid model architecture
+│   ├── train.py                   # Training script
+│   ├── feature_engineering.py     # Arabic linguistic feature extraction
+│   ├── processing.py              # Data preprocessing
 │   └── __init__.py
 ├── data/
-│   ├── arabic_training_v4.csv                  Final training dataset (8,041 samples)
-│   ├── dataset_with_features_v4.parquet        Training dataset with precomputed features
-│   ├── airabic_holdout_test_v3.csv             AIRABIC benchmark holdout (600 samples)
-│   ├── airabic_with_features.parquet           AIRABIC precomputed features
-│   ├── alhd_holdout_test.csv                   ALHD benchmark holdout (18,268 samples)
-│   ├── alhd_with_features.parquet              ALHD precomputed features
-│   └── human_eval_texts.csv                    Human evaluation texts (14 samples)
-├── optuna_results_9features.csv                          AraELECTRA 9feat Optuna results
-├── optuna_results_araelectra-base-discriminator_11features.csv
-├── optuna_results_bert-base-arabertv2_9features.csv      AraBERT 9feat Optuna results
-├── optuna_arabertv2_11features.csv                       AraBERT 11feat Optuna results
-├── evaluate_on_benchmark.py       AIRABIC benchmark evaluation
-├── evaluate_on_alhd.py            ALHD benchmark evaluation
-├── human_evaluation.py            Human expert evaluation
-├── build_v4_dataset.py            Dataset v4 construction script
-├── add_11feat_to_parquet.py       Add 11 features to parquet
-├── tune_hyperparameters.py        Optuna hyperparameter optimization
-├── tune_threshold.py              Decision threshold analysis
-├── analyze_features.py            9-feature distribution analysis
-├── analyze_11_features.py         11-feature distribution analysis
+│   ├── arabic_training_v4.csv              # Final training dataset (8,041 samples)
+│   ├── dataset_with_features_v4.parquet    # Training dataset with precomputed features
+│   ├── airabic_holdout_test_v3.csv         # AIRABIC benchmark holdout (600 samples)
+│   ├── airabic_with_features.parquet       # AIRABIC precomputed features
+│   ├── alhd_holdout_test.csv               # ALHD benchmark holdout (18,268 samples)
+│   ├── alhd_with_features.parquet          # ALHD precomputed features
+│   └── human_eval_texts.csv               # Human evaluation texts (14 samples)
+├── optuna_results_9features.csv                                # AraELECTRA 9feat Optuna
+├── optuna_results_araelectra-base-discriminator_11features.csv # AraELECTRA 11feat Optuna
+├── optuna_results_bert-base-arabertv2_9features.csv            # AraBERT 9feat Optuna
+├── optuna_arabertv2_11features.csv                             # AraBERT 11feat Optuna
+├── evaluate_on_benchmark.py       # AIRABIC benchmark evaluation
+├── evaluate_on_alhd.py            # ALHD benchmark evaluation
+├── human_evaluation.py            # Human expert evaluation
+├── build_v4_dataset.py            # Dataset v4 construction
+├── add_11feat_to_parquet.py       # Feature engineering
+├── tune_hyperparameters.py        # Optuna optimization
+├── tune_threshold.py              # Threshold analysis
+├── analyze_features.py            # 9-feature analysis
+├── analyze_11_features.py         # 11-feature analysis
 └── requirements.txt
+```
+
 ---
 
 ## Dataset
@@ -76,6 +76,14 @@ Pre-trained model weights for all four configurations are available on HuggingFa
 | AraBERT 11feat | https://huggingface.co/alla4a/arabert-11feat-arabic-ai-detection |
 
 Download and place each model folder under the `models/` directory:
+
+```
+models/
+├── SOTA_model_AraELECTRA_9_features_OriginalData_Tuned_v4/
+├── SOTA_model_AraELECTRA_11_features_Augmented_Tuned_v4/
+├── SOTA_model_AraBERT_9_features_OriginalData_Tuned_v4/
+└── SOTA_model_AraBERT_11_features_OriginalData_Tuned_v4/
+```
 
 ---
 
@@ -182,4 +190,4 @@ To be updated upon publication.
 
 For questions or reviewer access requests, please contact the authors.
 A.Azzouz5009@student.aast.edu
-alla.abdelrady@gmail.com
+alla.azzouz@hotmail.com
