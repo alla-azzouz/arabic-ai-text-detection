@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Model checkpoints (too large)
+checkpoint-*/
+tmp_trainer/
+temp_eval/
+
+# Old figures
+feature_distributions_OLD.png
+feature_distributions_11_features_OLD.png
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+*.code-workspace
+
+# Logs
+*.log
+wandb/

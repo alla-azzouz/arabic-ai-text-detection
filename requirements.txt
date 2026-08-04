@@ -1,0 +1,20 @@
+pandas
+scikit-learn
+transformers
+torch
+datasets
+accelerate
+pyarabic
+huggingface_hub
+# ... your other packages ...
+nltk
+scikit-learn
+joblib
+#argparse
+# Potentially others like hf_xet if we kept it
+scipy
+tqdm 
+pyarrow
+pysbd
+lexical-diversity
+safetensors
