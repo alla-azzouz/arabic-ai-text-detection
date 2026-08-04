@@ -1,91 +1,185 @@
-Arabic AI-Generated Text Detection: A Hybrid Transformer and Linguistic Feature Framework
-This repository contains the code, data, and resources for the paper:
+# Hybrid Framework for Robust AI-Generated Arabic Text Detection with Cross-Domain Generalization and Human-Machine Comparative Analysis
 
-"Hybrid Framework for Robust AI-Generated Arabic Text Detection with Cross-Domain Generalization and Human-Machine Comparative Analysis"
+## Copyright Notice
 
-Overview
+Copyright (c) 2026  Alla Azzouz/ Alla Abd El-Rady. All rights reserved.
+
+This repository is associated with a manuscript currently under peer review.
+All rights reserved until publication. Unauthorized use, reproduction,
+or distribution is prohibited without explicit written permission from the authors.
+
+Upon publication, this repository will be licensed under the MIT License.
+
+---
+
+## Overview
+
 This work proposes a hybrid framework for detecting AI-generated Arabic text by combining Arabic-specific pretrained transformer encoders (AraELECTRA and AraBERT) with explicit Arabic linguistic features. Four model configurations are evaluated across two feature sets (9-feature and 11-feature) on two independent Arabic benchmark datasets.
-Repository Structure
+
+---
+
+## Repository Structure
+arabic-ai-text-detection/
 ├── src/
-│   ├── config.py              # Model and training configuration
-│   ├── model.py               # Hybrid model architecture
-│   ├── train.py               # Training script
-│   ├── feature_engineering.py # Arabic linguistic feature extraction
-│   ├── processing.py          # Data preprocessing
+│   ├── config.py                  Model and training configuration
+│   ├── model.py                   Hybrid model architecture
+│   ├── train.py                   Training script
+│   ├── feature_engineering.py     Arabic linguistic feature extraction
+│   ├── processing.py              Data preprocessing
 │   └── __init__.py
 ├── data/
-│   ├── arabic_training_v4.csv                 # Final training dataset (8,041 samples)
-│   ├── dataset_with_features_v4.parquet       # Training dataset with precomputed features
-│   ├── airabic_holdout_test_v3.csv            # AIRABIC benchmark holdout (600 samples)
-│   ├── airabic_with_features.parquet          # AIRABIC precomputed features
-│   ├── alhd_holdout_test.csv                  # ALHD benchmark holdout (18,268 samples)
-│   ├── alhd_with_features.parquet             # ALHD precomputed features
-│   └── human_eval_texts.csv                   # Human evaluation texts (14 samples)
-├── optuna_results_9features.csv                                # AraELECTRA 9feat Optuna results
-├── optuna_results_araelectra-base-discriminator_11features.csv # AraELECTRA 11feat Optuna results
-├── optuna_results_bert-base-arabertv2_9features.csv            # AraBERT 9feat Optuna results
-├── optuna_arabertv2_11features.csv                             # AraBERT 11feat Optuna results
-├── evaluate_on_benchmark.py   # AIRABIC benchmark evaluation
-├── evaluate_on_alhd.py        # ALHD benchmark evaluation
-├── human_evaluation.py        # Human expert evaluation
-├── build_v4_dataset.py        # Dataset v4 construction script
-├── add_11feat_to_parquet.py   # Add 11 features to parquet
-├── tune_hyperparameters.py    # Optuna hyperparameter optimization
-├── tune_threshold.py          # Decision threshold analysis
-├── analyze_features.py        # 9-feature distribution analysis
-├── analyze_11_features.py     # 11-feature distribution analysis
+│   ├── arabic_training_v4.csv                  Final training dataset (8,041 samples)
+│   ├── dataset_with_features_v4.parquet        Training dataset with precomputed features
+│   ├── airabic_holdout_test_v3.csv             AIRABIC benchmark holdout (600 samples)
+│   ├── airabic_with_features.parquet           AIRABIC precomputed features
+│   ├── alhd_holdout_test.csv                   ALHD benchmark holdout (18,268 samples)
+│   ├── alhd_with_features.parquet              ALHD precomputed features
+│   └── human_eval_texts.csv                    Human evaluation texts (14 samples)
+├── optuna_results_9features.csv                          AraELECTRA 9feat Optuna results
+├── optuna_results_araelectra-base-discriminator_11features.csv
+├── optuna_results_bert-base-arabertv2_9features.csv      AraBERT 9feat Optuna results
+├── optuna_arabertv2_11features.csv                       AraBERT 11feat Optuna results
+├── evaluate_on_benchmark.py       AIRABIC benchmark evaluation
+├── evaluate_on_alhd.py            ALHD benchmark evaluation
+├── human_evaluation.py            Human expert evaluation
+├── build_v4_dataset.py            Dataset v4 construction script
+├── add_11feat_to_parquet.py       Add 11 features to parquet
+├── tune_hyperparameters.py        Optuna hyperparameter optimization
+├── tune_threshold.py              Decision threshold analysis
+├── analyze_features.py            9-feature distribution analysis
+├── analyze_11_features.py         11-feature distribution analysis
 └── requirements.txt
-Dataset
-The training dataset contains 8,041 Arabic text samples after deduplication:
+---
 
-Human-written: 4,091 samples from diverse Arabic sources
-AI-generated: 3,950 samples from 6 language models including Arabic-native models Jais and ALLaM
-Balance ratio: 1.035 (near-perfectly balanced)
-Sources: Modern lifestyle Arabic, classical Islamic Arabic, hard news, social media
+## Dataset
 
-The dataset was split using composite stratification (source + word count) with a 60/20/20 train/validation/test ratio.
-Model Weights
+The training dataset contains **8,041 Arabic text samples** after deduplication:
+
+- **Human-written**: 4,091 samples from diverse Arabic sources
+- **AI-generated**: 3,950 samples from 6 language models including Arabic-native models Jais and ALLaM
+- **Balance ratio**: 1.035 (near-perfectly balanced)
+- **Sources**: Modern lifestyle Arabic, classical Islamic Arabic, hard news, social media
+
+The dataset was split using composite stratification (source + word count) with a **60/20/20** train/validation/test ratio.
+
+---
+
+## Model Weights
+
 Pre-trained model weights for all four configurations are available on HuggingFace:
 
-AraELECTRA 9feat: https://huggingface.co/alla4a/araelectra-9feat-arabic-ai-detection
-AraELECTRA 11feat: https://huggingface.co/alla4a/araelectra-11feat-arabic-ai-detection
-AraBERT 9feat: https://huggingface.co/alla4a/arabert-9feat-arabic-ai-detection
-AraBERT 11feat: https://huggingface.co/alla4a/arabert-11feat-arabic-ai-detection
+| Model | HuggingFace Link |
+|-------|-----------------|
+| AraELECTRA 9feat | https://huggingface.co/alla4a/araelectra-9feat-arabic-ai-detection |
+| AraELECTRA 11feat | https://huggingface.co/alla4a/araelectra-11feat-arabic-ai-detection |
+| AraBERT 9feat | https://huggingface.co/alla4a/arabert-9feat-arabic-ai-detection |
+| AraBERT 11feat | https://huggingface.co/alla4a/arabert-11feat-arabic-ai-detection |
 
-Download and place each model folder under the models/ directory:
-models/
-├── SOTA_model_AraELECTRA_9_features_OriginalData_Tuned_v4/
-├── SOTA_model_AraELECTRA_11_features_Augmented_Tuned_v4/
-├── SOTA_model_AraBERT_9_features_OriginalData_Tuned_v4/
-└── SOTA_model_AraBERT_11_features_OriginalData_Tuned_v4/
-Installation
-bashgit clone https://github.com/alla-azzouz/ai-text-detector.git
-cd ai-text-detector
+Download and place each model folder under the `models/` directory:
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/alla-azzouz/arabic-ai-text-detection.git
+cd arabic-ai-text-detection
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-Usage
-Training
-Update src/config.py with your desired model configuration then run:
-bashpython -m src.train
-Evaluation on AIRABIC Benchmark
-bashpython evaluate_on_benchmark.py
-Evaluation on ALHD Benchmark
-bashpython evaluate_on_alhd.py
-Human Evaluation
-bashpython human_evaluation.py
-Hyperparameter Optimization
-bashpython tune_hyperparameters.py
-Feature Distribution Analysis
-bashpython analyze_features.py        # 9 features
-python analyze_11_features.py     # 11 features
-Model Configuration
-To switch between model configurations, update src/config.py:
-ModelRUN_OUTPUT_DIRPRE_TRAINED_MODEL_NAMENUM_EXPLICIT_FEATURESAraELECTRA 9featSOTA_model_AraELECTRA_9_features_OriginalData_Tuned_v4aubmindlab/araelectra-base-discriminator9AraELECTRA 11featSOTA_model_AraELECTRA_11_features_Augmented_Tuned_v4aubmindlab/araelectra-base-discriminator11AraBERT 9featSOTA_model_AraBERT_9_features_OriginalData_Tuned_v4aubmindlab/bert-base-arabertv29AraBERT 11featSOTA_model_AraBERT_11_features_OriginalData_Tuned_v4aubmindlab/bert-base-arabertv211
-Linguistic Features
-9-Feature Set
-FeatureDescriptionword_countTotal number of wordssentence_countTotal number of sentencesavg_sentence_lengthAverage words per sentencesentence_length_stdStandard deviation of sentence lengthsperplexityAraGPT2-based Arabic perplexity scorestop_word_ratioRatio of Arabic stop wordsrepetition_score_3gram3-gram uniqueness scorehapax_ratioRatio of words appearing only oncemtldMeasure of Textual Lexical Diversity
-11-Feature Set (9 features + 2 additional)
-FeatureDescriptionattribution_densityDensity of attribution markerssource_marker_densityDensity of source citation markers
-Citation
+```
 
+---
+
+## Usage
+
+### Training
+
+Update `src/config.py` with your desired model configuration then run:
+
+```bash
+python -m src.train
+```
+
+### Evaluation on AIRABIC Benchmark
+
+```bash
+python evaluate_on_benchmark.py
+```
+
+### Evaluation on ALHD Benchmark
+
+```bash
+python evaluate_on_alhd.py
+```
+
+### Human Evaluation
+
+```bash
+python human_evaluation.py
+```
+
+### Hyperparameter Optimization
+
+```bash
+python tune_hyperparameters.py
+```
+
+### Feature Distribution Analysis
+
+```bash
+python analyze_features.py        # 9 features
+python analyze_11_features.py     # 11 features
+```
+
+---
+
+## Model Configuration
+
+To switch between model configurations, update `src/config.py`:
+
+| Model | RUN_OUTPUT_DIR | PRE_TRAINED_MODEL_NAME | NUM_EXPLICIT_FEATURES |
+|-------|---------------|----------------------|----------------------|
+| AraELECTRA 9feat | SOTA_model_AraELECTRA_9_features_OriginalData_Tuned_v4 | aubmindlab/araelectra-base-discriminator | 9 |
+| AraELECTRA 11feat | SOTA_model_AraELECTRA_11_features_Augmented_Tuned_v4 | aubmindlab/araelectra-base-discriminator | 11 |
+| AraBERT 9feat | SOTA_model_AraBERT_9_features_OriginalData_Tuned_v4 | aubmindlab/bert-base-arabertv2 | 9 |
+| AraBERT 11feat | SOTA_model_AraBERT_11_features_OriginalData_Tuned_v4 | aubmindlab/bert-base-arabertv2 | 11 |
+
+---
+
+## Linguistic Features
+
+### 9-Feature Set
+
+| Feature | Description |
+|---------|-------------|
+| word_count | Total number of words |
+| sentence_count | Total number of sentences |
+| avg_sentence_length | Average words per sentence |
+| sentence_length_std | Standard deviation of sentence lengths |
+| perplexity | AraGPT2-based Arabic perplexity score |
+| stop_word_ratio | Ratio of Arabic stop words |
+| repetition_score_3gram | 3-gram uniqueness score |
+| hapax_ratio | Ratio of words appearing only once |
+| mtld | Measure of Textual Lexical Diversity |
+
+### 11-Feature Set (9 features + 2 additional)
+
+| Feature | Description |
+|---------|-------------|
+| attribution_density | Density of attribution markers |
+| source_marker_density | Density of source citation markers |
+
+---
+
+## Citation
+
+To be updated upon publication.
+
+---
+
+## Contact
+
+For questions or reviewer access requests, please contact the authors.
+A.Azzouz5009@student.aast.edu
+alla.abdelrady@gmail.com
