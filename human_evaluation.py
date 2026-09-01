@@ -97,12 +97,7 @@ def run_inference(loaded_model, tokenizer, scaler, texts, features_array):
 
 
 def print_results(model_name, y_true, y_pred, y_score, df):
-    acc_n = accuracy_score(y_true, y_pred)
-    acc_f = accuracy_score(y_true, 1 - y_pred)
-    if acc_f > acc_n:
-        print("  Applying label flip...")
-        y_pred  = 1 - y_pred
-        y_score = 1 - y_score
+  
 
     cm = confusion_matrix(y_true, y_pred, labels=[0,1])
     tn, fp, fn, tp = cm.ravel()
