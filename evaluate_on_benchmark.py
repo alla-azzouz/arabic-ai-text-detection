@@ -1,7 +1,7 @@
 # evaluate_on_benchmark.py
 #
 # DEFINITIVE FINAL VERSION
-#
+
 # Supports both v1 and v2 models:
 #   v1 AraELECTRA: loads best_model_state_dict.pt with electra->transformer remapping
 #   v2 models (AraELECTRA + AraBERT): loads from best checkpoint/model.safetensors
