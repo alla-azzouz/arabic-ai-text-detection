@@ -8,7 +8,6 @@
 #     (keys already use transformer.* — no remapping needed)
 #
 # Features keyed by preprocessed text — guaranteed alignment.
-# Sanity check printed — no hardcoded flip.
 
 import pandas as pd
 import joblib
