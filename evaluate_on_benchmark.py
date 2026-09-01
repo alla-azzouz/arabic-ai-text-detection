@@ -1,12 +1,5 @@
 # evaluate_on_benchmark.py
-#
-# DEFINITIVE FINAL VERSION
 
-# Supports both v1 and v2 models:
-#   v1 AraELECTRA: loads best_model_state_dict.pt with electra->transformer remapping
-#   v2 models (AraELECTRA + AraBERT): loads from best checkpoint/model.safetensors
-#     (keys already use transformer.* — no remapping needed)
-#
 # Features keyed by preprocessed text — guaranteed alignment.
 
 import pandas as pd
@@ -194,8 +187,7 @@ def main():
         return
 
     # ── 4. Load benchmark CSV ────────────────────────────────
-    # Use airabic_holdout_test.csv for v2 models (fair evaluation)
-    # Use airabic.csv for original benchmark
+    
     holdout_path = project_config.DATA_DIR / "airabic_holdout_test_v3.csv"
     original_path = project_config.DATA_DIR / "airabic.csv"
 
